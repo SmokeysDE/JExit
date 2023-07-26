@@ -39,42 +39,44 @@ public class MainWindow extends JFrame {
         Panel pane = new Panel();
         pane.setLayout(grid);
         pane.setSize(300,200);
+
     // Mid Panel
         Panel pane2 = new Panel();
         pane2.setSize(300,200);
         pane2.setBackground(Color.darkGray);
+
     // Low Panel
         Panel pane3 = new Panel();
         pane3.setSize(300,200);
+
     // Adding details
         pane2.add(label);
         pane.setBackground(Color.darkGray);
         pane.createButtons();
-    //Button Names, Text
 
-        Buttons btn = pane.getButton(0);
-        Buttons btn1 = pane.getButton(1);
-        Buttons btn2 = pane.getButton(2);
-        Buttons btn3 = pane.getButton(3);
-        Buttons btn4 = pane.getButton(4);
-        Buttons btn5 = pane.getButton(5);
-        btn.setText("Shutdown");
-        btn1.setText("Pomodoro");
-        btn2.setText("IP release");
-        btn3.setText("Abort");
-        btn4.setText("Reminder");
-        btn5.setText("IP renew");
+    //Button Names, Text
+        Buttons shutdown = pane.getButton(0);
+        Buttons pomodoro = pane.getButton(1);
+        Buttons iprelease = pane.getButton(2);
+        Buttons abort = pane.getButton(3);
+        Buttons reminder = pane.getButton(4);
+        Buttons reconnect = pane.getButton(5);
+        shutdown.setText("Shutdown");
+        pomodoro.setText("Pomodoro");
+        iprelease.setText("IP release");
+        abort.setText("Abort");
+        reminder.setText("Reminder");
+        reconnect.setText("IP renew");
 
     // Button Shutdown
-        btn.addActionListener(new ActionListener() {
-
-
+        shutdown.addActionListener(new ActionListener() {
+            // anonym action-listener for button action
             @Override
             public void actionPerformed(ActionEvent e) {
                 Runtime rt = Runtime.getRuntime();
                 try {
                     rt.exec(command[0]); // shutdown -s -t 1800
-                    infoBox("Shutdown in 30 min",btn.getText());
+                    infoBox("Shutdown in 30 min", shutdown.getText());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -82,7 +84,7 @@ public class MainWindow extends JFrame {
 
         });
     // Button Pomodoro
-        btn1.addActionListener(new ActionListener() {
+        pomodoro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 label.setText("Hallo");
@@ -92,11 +94,11 @@ public class MainWindow extends JFrame {
             }
         });
     // Button IP release
-        btn2.addActionListener(new ActionListener() {
+        iprelease.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Runtime rt = Runtime.getRuntime();
-                infoBox("Disconnected",btn2.getText());
+                infoBox("Disconnected",iprelease.getText());
                 try {
                     rt.exec(command[1]);
                 } catch (IOException ex) {
@@ -105,11 +107,11 @@ public class MainWindow extends JFrame {
             }
         });
         // Button Shutdown Abort
-        btn3.addActionListener(new ActionListener() {
+        abort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Runtime rt = Runtime.getRuntime();
-                infoBox("Shutdown abgebrochen",btn3.getText());
+                infoBox("Shutdown abgebrochen",abort.getText());
                 try{
                     rt.exec(command[3]); // shutdown -a
                 } catch(IOException ex){
@@ -119,7 +121,7 @@ public class MainWindow extends JFrame {
             }
         });
         // Button Reminder
-        btn4.addActionListener(new ActionListener() {
+        reminder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 label.setText("Reminder");
@@ -127,11 +129,11 @@ public class MainWindow extends JFrame {
             }
         });
         // Button IP Renew
-        btn5.addActionListener(new ActionListener() {
+        reconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Runtime rt = Runtime.getRuntime();
-                infoBox("Reconnect",btn5.getText());
+                infoBox("Reconnect",reconnect.getText());
                 try{
                     rt.exec(command[2]); // ipconfig -renew
                 } catch(IOException ex){
