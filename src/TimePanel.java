@@ -28,7 +28,7 @@ public class TimePanel extends JLabel implements ActionListener
 
     public TimePanel()
     {
-        super("", JLabel.LEFT);
+        super("");
     }
 
     /**
@@ -43,7 +43,7 @@ public class TimePanel extends JLabel implements ActionListener
     }
 
     /**
-     * Remove component from its parent. Stop the timer.
+     * Remove component from its parent, stop the timer
      */
     public void removeNotify()
     {

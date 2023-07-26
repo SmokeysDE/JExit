@@ -6,14 +6,14 @@ import java.io.IOException;
 
 public class MainWindow extends JFrame {
 //    TextField textField = new TextField();
-    JLabel label = new JLabel();
+    private JLabel _label = new JLabel();
 
     /**
-     *                      0                        1                    2                3
+     *                           [0]                  [1]                  [2]              [3]
      */
 
-    String[] command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
-    GridLayout grid = new GridLayout(2,1,0,0);
+    private String[] _command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
+    private GridLayout _grid = new GridLayout(2,1,0,0);
 
 
 
@@ -39,7 +39,7 @@ public class MainWindow extends JFrame {
          * Button Panel
          */
         Panel pane = new Panel();
-        pane.setLayout(grid);
+        pane.setLayout(_grid);
         pane.setSize(300,200);
 
         /**
@@ -50,6 +50,12 @@ public class MainWindow extends JFrame {
         pane2.setBackground(Color.darkGray);
         TimePanel time = new TimePanel();
         time.setForeground(Color.white);
+        time.setSize(200,200);
+        time.setFont(new Font("Sans serif", Font.BOLD, 24));
+        JTimer countdown = new JTimer();
+        countdown.setForeground(Color.white);
+        countdown.setSize(200,200);
+        countdown.setFont(new Font("Sans serif", Font.BOLD, 24));
         pane2.setLayout(new GridLayout(1,2));
 
         /**
@@ -62,6 +68,7 @@ public class MainWindow extends JFrame {
          *Adding details
          */
         pane2.add(time);
+        pane2.add(countdown);
         pane.setBackground(Color.darkGray);
         pane.createButtons();
 
@@ -89,7 +96,7 @@ public class MainWindow extends JFrame {
         shutdown.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
             try {
-                rt.exec(command[0]); // shutdown -s -t 1800
+                rt.exec(_command[0]); // shutdown -s -t 1800
                 infoBox("Shutdown in 30 min", shutdown.getText());
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -101,36 +108,8 @@ public class MainWindow extends JFrame {
          */
         pomodoro.addActionListener(e -> {
 
-            label.setForeground(Color.white);
+            _label.setForeground(Color.white);
 
-
-        });
-
-        /**
-         * Button IP release
-         */
-
-        iprelease.addActionListener(e -> {
-            Runtime rt = Runtime.getRuntime();
-            infoBox("Disconnected",iprelease.getText());
-            try {
-                rt.exec(command[1]);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-
-        /**
-         * Button IP release
-         */
-        abort.addActionListener(e -> {
-            Runtime rt = Runtime.getRuntime();
-            infoBox("Shutdown abgebrochen",abort.getText());
-            try{
-                rt.exec(command[3]); // shutdown -a
-            } catch(IOException ex){
-                ex.printStackTrace();
-            }
 
         });
 
@@ -138,21 +117,51 @@ public class MainWindow extends JFrame {
          * Button IP release
          *              with lambda
          */
-        reminder.addActionListener(e->{
-
-                label.setText("Reminder");
-                label.setForeground(Color.white);
+        iprelease.addActionListener(e -> {
+            Runtime rt = Runtime.getRuntime();
+            infoBox("Disconnected",iprelease.getText());
+            try {
+                rt.exec(_command[1]);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
         /**
-         * Button IP Renew
+         * Button Abort
+         *              with lambda
+         */
+        abort.addActionListener(e -> {
+            Runtime rt = Runtime.getRuntime();
+            infoBox("Shutdown abgebrochen",abort.getText());
+            try{
+                rt.exec(_command[3]); // shutdown -a
+            } catch(IOException ex){
+                ex.printStackTrace();
+            }
+
+        });
+
+        /**
+         * Button Reminder
+         *              with lambda
+         */
+        reminder.addActionListener(e->{
+
+                _label.setText("Reminder");
+                _label.setForeground(Color.white);
+        });
+
+        /**
+         * Button IP renew
+         *              with lambda
          */
         reconnect.addActionListener(e ->  {
 
                 Runtime rt = Runtime.getRuntime();
                 infoBox("Reconnect",reconnect.getText());
                 try{
-                    rt.exec(command[2]); // ipconfig -renew
+                    rt.exec(_command[2]); // ipconfig -renew
                 } catch(IOException ex) {
                     ex.printStackTrace();
                 }
@@ -169,6 +178,9 @@ public class MainWindow extends JFrame {
          * last but not least
          */
         setVisible(true);
+        /**
+         * It's a kind of magic
+         */
 
     }
 
