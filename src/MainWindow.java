@@ -150,6 +150,7 @@ public class MainWindow extends JFrame {
 
                 _label.setText("Reminder");
                 _label.setForeground(Color.white);
+                inputBox("Bitte eingeben ", reminder.getText());
         });
 
         /**
@@ -192,5 +193,17 @@ public class MainWindow extends JFrame {
     public void infoBox(String infoMessage, String titleBar){
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar,
                 JOptionPane.INFORMATION_MESSAGE);
+    }
+    public void inputBox(String infoMessage, String titleBar){
+        JTextField time = new JTextField();
+        JTextField message = new JTextField();
+        Object[] input = {
+                "Set Timer", time,
+                "Message", message
+        };
+
+        int option = JOptionPane.showConfirmDialog(null, input, titleBar, JOptionPane.OK_CANCEL_OPTION);
+        //if (option == JOptionPane.OK_OPTION) {}
+
     }
 }
