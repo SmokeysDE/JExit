@@ -1,19 +1,11 @@
 import javax.swing.*;
 import javax.swing.JFrame;
-import javax.swing.border.Border;
-import javax.swing.text.Position;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.IOException;
-import java.util.EventListener;
 
+@SuppressWarnings("ALL")
 public class MainWindow extends JFrame {
-    TextField textField = new TextField();
+//    TextField textField = new TextField();
     JLabel label = new JLabel();
 
     //                         0                       1                    2                3
@@ -69,77 +61,60 @@ public class MainWindow extends JFrame {
         reconnect.setText("IP renew");
 
     // Button Shutdown
-        shutdown.addActionListener(new ActionListener() {
-            // anonym action-listener for button action
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Runtime rt = Runtime.getRuntime();
-                try {
-                    rt.exec(command[0]); // shutdown -s -t 1800
-                    infoBox("Shutdown in 30 min", shutdown.getText());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+        // anonym action-listener for button action
+        shutdown.addActionListener(e -> {
+            Runtime rt = Runtime.getRuntime();
+            try {
+                rt.exec(command[0]); // shutdown -s -t 1800
+                infoBox("Shutdown in 30 min", shutdown.getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-
         });
     // Button Pomodoro
-        pomodoro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                label.setText("Hallo");
-                label.setForeground(Color.white);
+        pomodoro.addActionListener(e -> {
+            label.setText("Hallo");
+            label.setForeground(Color.white);
 
 
-            }
         });
     // Button IP release
-        iprelease.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Runtime rt = Runtime.getRuntime();
-                infoBox("Disconnected",iprelease.getText());
-                try {
-                    rt.exec(command[1]);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+        iprelease.addActionListener(e -> {
+            Runtime rt = Runtime.getRuntime();
+            infoBox("Disconnected",iprelease.getText());
+            try {
+                rt.exec(command[1]);
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         });
         // Button Shutdown Abort
-        abort.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Runtime rt = Runtime.getRuntime();
-                infoBox("Shutdown abgebrochen",abort.getText());
-                try{
-                    rt.exec(command[3]); // shutdown -a
-                } catch(IOException ex){
-                    ex.printStackTrace();
-                }
-
+        abort.addActionListener(e -> {
+            Runtime rt = Runtime.getRuntime();
+            infoBox("Shutdown abgebrochen",abort.getText());
+            try{
+                rt.exec(command[3]); // shutdown -a
+            } catch(IOException ex){
+                ex.printStackTrace();
             }
+
         });
         // Button Reminder
-        reminder.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        reminder.addActionListener(e->{
+
                 label.setText("Reminder");
                 label.setForeground(Color.white);
-            }
         });
         // Button IP Renew
-        reconnect.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        reconnect.addActionListener(e ->  {
+
                 Runtime rt = Runtime.getRuntime();
                 infoBox("Reconnect",reconnect.getText());
                 try{
                     rt.exec(command[2]); // ipconfig -renew
-                } catch(IOException ex){
+                } catch(IOException ex) {
                     ex.printStackTrace();
                 }
-            }
         });
 
     // Adding all together

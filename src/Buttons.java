@@ -1,9 +1,5 @@
-import javax.swing.*;
 import javax.swing.JButton;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class Buttons extends JButton {
 
