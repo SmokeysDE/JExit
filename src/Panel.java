@@ -7,10 +7,8 @@ public class Panel extends JPanel {
 
 
     public Panel() {
-        //this.setSize(height, width);
         this.setBackground(Color.gray);
         this.setBackground(Color.gray);
-//        setLayout(new GridLayout(2, 3));
     }
     public Panel(int width, int height){
         this.setSize(width, height);

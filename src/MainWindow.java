@@ -16,7 +16,7 @@ public class MainWindow extends JFrame {
     TextField textField = new TextField();
     JLabel label = new JLabel();
 
-    //                      0                       1                       2              3
+    //                         0                       1                    2                3
     String[] command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
     GridLayout grid = new GridLayout(2,1,0,0);
 
@@ -25,7 +25,7 @@ public class MainWindow extends JFrame {
     public MainWindow(){
     //Create main Window
         setResizable(false);
-        setTitle("Jexit");
+        setTitle("JExit");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 500);
         setLocationRelativeTo(null);
@@ -74,7 +74,7 @@ public class MainWindow extends JFrame {
                 Runtime rt = Runtime.getRuntime();
                 try {
                     rt.exec(command[0]); // shutdown -s -t 1800
-                    //infoBox("Shutdown in 30 min",btn.getText());
+                    infoBox("Shutdown in 30 min",btn.getText());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -109,6 +109,7 @@ public class MainWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Runtime rt = Runtime.getRuntime();
+                infoBox("Shutdown abgebrochen",btn3.getText());
                 try{
                     rt.exec(command[3]); // shutdown -a
                 } catch(IOException ex){
