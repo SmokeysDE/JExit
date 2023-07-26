@@ -9,7 +9,7 @@ public class MainWindow extends JFrame {
     private JLabel _label = new JLabel();
 
     /**
-     *                           [0]                  [1]                  [2]              [3]
+     *                                   [0]                  [1]                  [2]              [3]
      */
 
     private String[] _command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
