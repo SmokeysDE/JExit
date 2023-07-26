@@ -37,8 +37,4 @@ public class Buttons extends JButton {
     public int getWidth() {
         return width;
     }
-
-
-
-
 }

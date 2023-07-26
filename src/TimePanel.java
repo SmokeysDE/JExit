@@ -101,5 +101,3 @@ public class TimePanel extends JLabel implements ActionListener
         return _prefSize;
     }
 }
-
-

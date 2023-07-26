@@ -47,4 +47,3 @@ public class Panel extends JPanel {
         return btn[btnNumber];
     }
 }
-
