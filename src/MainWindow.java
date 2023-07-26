@@ -5,7 +5,7 @@ import java.io.IOException;
 
 
 public class MainWindow extends JFrame {
-//    TextField textField = new TextField();
+
     private JLabel _label = new JLabel();
 
     /**
