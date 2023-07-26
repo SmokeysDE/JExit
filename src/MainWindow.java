@@ -3,50 +3,68 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.io.IOException;
 
-@SuppressWarnings("ALL")
+
 public class MainWindow extends JFrame {
 //    TextField textField = new TextField();
     JLabel label = new JLabel();
 
-    //                         0                       1                    2                3
+    /**
+     *                      0                        1                    2                3
+     */
+
     String[] command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
     GridLayout grid = new GridLayout(2,1,0,0);
 
 
 
     public MainWindow(){
-    //Create main Window
+        /**
+         * Create main Window
+         */
         setResizable(false);
         setTitle("JExit");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 500);
         setLocationRelativeTo(null);
 
-    //Create first (Main) Panel
+        /**
+         * Main panel
+         */
         Panel panel = new Panel();
         panel.setSize(300,600);
         panel.setLayout(new GridLayout(3,1));
 
-    // Button Panel
+        /**
+         * Button Panel
+         */
         Panel pane = new Panel();
         pane.setLayout(grid);
         pane.setSize(300,200);
 
-    // Mid Panel
+        /**
+         * Mid Panel
+         */
         Panel pane2 = new Panel();
         pane2.setSize(300,200);
         pane2.setBackground(Color.darkGray);
+        TimePanel time = new TimePanel();
 
-    // Low Panel
+        /**
+         * Low Panel
+         */
         Panel pane3 = new Panel();
         pane3.setSize(300,200);
 
-    // Adding details
-        pane2.add(label);
+        /**
+         *Adding details
+         */
+        pane2.add(time);
         pane.setBackground(Color.darkGray);
         pane.createButtons();
 
-    //Button Names, Text
+        /**
+         * Button Names and Text
+         */
         Buttons shutdown = pane.getButton(0);
         Buttons pomodoro = pane.getButton(1);
         Buttons iprelease = pane.getButton(2);
@@ -60,8 +78,11 @@ public class MainWindow extends JFrame {
         reminder.setText("Reminder");
         reconnect.setText("IP renew");
 
-    // Button Shutdown
-        // anonym action-listener for button action
+        /**
+         * Button Shutdown
+         *          lambda for button action
+         */
+
         shutdown.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
             try {
@@ -71,14 +92,21 @@ public class MainWindow extends JFrame {
                 ex.printStackTrace();
             }
         });
-    // Button Pomodoro
+
+        /**
+         * Button Pomodoro
+         */
         pomodoro.addActionListener(e -> {
-            label.setText("Hallo");
+
             label.setForeground(Color.white);
 
 
         });
-    // Button IP release
+
+        /**
+         * Button IP release
+         */
+
         iprelease.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
             infoBox("Disconnected",iprelease.getText());
@@ -88,7 +116,10 @@ public class MainWindow extends JFrame {
                 ex.printStackTrace();
             }
         });
-        // Button Shutdown Abort
+
+        /**
+         * Button IP release
+         */
         abort.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
             infoBox("Shutdown abgebrochen",abort.getText());
@@ -99,13 +130,20 @@ public class MainWindow extends JFrame {
             }
 
         });
-        // Button Reminder
+
+        /**
+         * Button IP release
+         *              with lambda
+         */
         reminder.addActionListener(e->{
 
                 label.setText("Reminder");
                 label.setForeground(Color.white);
         });
-        // Button IP Renew
+
+        /**
+         * Button IP Renew
+         */
         reconnect.addActionListener(e ->  {
 
                 Runtime rt = Runtime.getRuntime();
@@ -117,19 +155,25 @@ public class MainWindow extends JFrame {
                 }
         });
 
-    // Adding all together
+        /**
+         * Adding all together
+         */
         panel.add(pane);
         panel.add(pane2);
         panel.add(pane3);
         add(panel);
-    // last but not least
+        /**
+         * last but not least
+         */
         setVisible(true);
-    // Optional ?
-        //pack();
-    // Optional ?
 
     }
-    // Model infoBox for buttons
+
+    /**
+     * custom infoBox for buttons
+     * @param infoMessage
+     * @param titleBar
+     */
     public void infoBox(String infoMessage, String titleBar){
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar,
                 JOptionPane.INFORMATION_MESSAGE);
