@@ -18,6 +18,7 @@ public class MainWindow extends JFrame {
 
 
     public MainWindow(){
+
         /**
          * Create main Window
          */
@@ -48,6 +49,8 @@ public class MainWindow extends JFrame {
         pane2.setSize(300,200);
         pane2.setBackground(Color.darkGray);
         TimePanel time = new TimePanel();
+        time.setForeground(Color.white);
+        pane2.setLayout(new GridLayout(1,2));
 
         /**
          * Low Panel

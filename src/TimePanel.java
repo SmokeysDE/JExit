@@ -16,7 +16,7 @@ public class TimePanel extends JLabel implements ActionListener
     private Timer _timer;
 
     //Used to format the displayed date.
-    private DateFormat _fmt = DateFormat.getTimeInstance(DateFormat.LONG);
+    private DateFormat _fmt = DateFormat.getTimeInstance(DateFormat.MEDIUM);
     private Dimension _prefSize;
     private Calendar _calendar = Calendar.getInstance();
 
@@ -28,12 +28,13 @@ public class TimePanel extends JLabel implements ActionListener
 
     public TimePanel()
     {
-        super("", JLabel.CENTER);
+        super("", JLabel.LEFT);
     }
 
     /**
      * Add component to its parent. Start the timer for auto-update.
      */
+
     public void addNotify()
     {
         super.addNotify();
@@ -74,8 +75,6 @@ public class TimePanel extends JLabel implements ActionListener
     {
         if(null == _prefSize)
         {
-            // This was originaly done every time.
-            // and the count of instantiated objects was amazing
             _prefSize = new Dimension();
             _prefSize.height = 20;
             FontMetrics fm = getFontMetrics(getFont());
