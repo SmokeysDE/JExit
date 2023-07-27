@@ -58,6 +58,7 @@ public class MainWindow extends JFrame {
          */
         Panel pane3 = new Panel();
         pane3.setSize(300,200);
+        pane3.setBackground(Color.darkGray);
 
         /**
          *Adding details
