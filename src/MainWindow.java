@@ -14,6 +14,7 @@ public class MainWindow extends JFrame {
 
     private String[] _command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
     private GridLayout _grid = new GridLayout(2,1,0,0);
+    private int _count1 = 0;
 
     public MainWindow(){
 
@@ -140,6 +141,7 @@ public class MainWindow extends JFrame {
                 }
                 JTimer _count = new JTimer();
                 pane2.add(_count);
+                pane2.revalidate();
             } catch(IOException ex){
                 ex.printStackTrace();
             }
@@ -156,7 +158,7 @@ public class MainWindow extends JFrame {
 
             JComboBox<Integer> time = new JComboBox<>();
             JTextField message = new JTextField();
-            Integer[] arr = {5, 10, 15, 20, 30, 45};
+            Integer[] arr = {1, 5, 10, 15, 20, 30, 45};
             time.setModel(new DefaultComboBoxModel<>(arr));
 
             Object[] input = {
@@ -225,6 +227,14 @@ public class MainWindow extends JFrame {
          */
 
     }
+
+//    public int get_count() {
+//        return _count;
+//    }
+//
+//    public void set_count(int _count) {
+//        this._count = _count;
+//    }
 
     /**
      * custom infoBox for buttons
