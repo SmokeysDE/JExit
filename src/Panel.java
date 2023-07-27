@@ -6,7 +6,7 @@ public class Panel extends JPanel {
     private Buttons[] btn;
 
     /**
-     * modded default constructor
+     * Default constructor
      */
     public Panel() {
         this.setBackground(Color.gray);
@@ -14,7 +14,7 @@ public class Panel extends JPanel {
     }
 
     /**
-     * custom csr
+     * custom ctor
      * @param width of the panel
      * @param height of the panel
      */
@@ -22,6 +22,16 @@ public class Panel extends JPanel {
         this.setSize(width, height);
         this.setBackground(Color.gray);
         this.setBackground(Color.gray);
+    }
+
+    /**
+     * button getter
+     * @param btnNumber array index
+     * @return button
+     */
+    public Buttons getButton(int btnNumber){
+
+        return btn[btnNumber];
     }
 
     /**
@@ -35,15 +45,5 @@ public class Panel extends JPanel {
             btn[i] = buttons;
             this.add(buttons);
         }
-    }
-
-    /**
-     * button getter
-     * @param btnNumber array index
-     * @return button
-     */
-    public Buttons getButton(int btnNumber){
-
-        return btn[btnNumber];
     }
 }

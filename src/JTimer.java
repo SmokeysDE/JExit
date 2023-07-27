@@ -10,11 +10,18 @@ public class JTimer extends JLabel implements ActionListener {
     private Timer _timer;
     private int remainingTimeInSeconds;
 
+
+    /**
+     * Default ctor
+     */
     public JTimer(){
         super("",JLabel.RIGHT);
-        remainingTimeInSeconds = 30 * 60; // 30 Minuten in Sekunden umrechnen
+        remainingTimeInSeconds = 30 * 60; // 30 minutes in seconds
     }
 
+    /**
+     * Add component to its parent. Start the timer for auto-update.
+     */
     @Override
     public void addNotify()
     {
@@ -23,6 +30,9 @@ public class JTimer extends JLabel implements ActionListener {
         _timer.start();
     }
 
+    /**
+     * Remove component from its parent, stop the timer
+     */
     @Override
     public void removeNotify()
     {
@@ -34,24 +44,26 @@ public class JTimer extends JLabel implements ActionListener {
         }
     }
 
+    /**
+     * Update component with the current time.
+     *
+     * @param e   The current event.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        /**
-         * Countdown function
-         */
         if (remainingTimeInSeconds > 0) {
             remainingTimeInSeconds--;
             int minutes = remainingTimeInSeconds / 60;
             int seconds = remainingTimeInSeconds % 60;
 
             String countdownText = String.format("%02d:%02d", minutes, seconds);
-            setText(countdownText); // Label mit dem aktualisierten Countdown-Text setzen
+            setText(countdownText); // set Countdown ond Label
         } else {
             /**
              * Countdown ist abgelaufen
               */
             setText("00:00");
-            _timer.stop(); // Timer stoppen, da der Countdown abgelaufen ist
+            _timer.stop(); // stop timer
         }
     }
 }

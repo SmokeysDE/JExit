@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import javax.swing.JFrame;
 import java.awt.*;
@@ -195,11 +196,16 @@ public class MainWindow extends JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
     }
     public void inputBox(String infoMessage, String titleBar){
-        JTextField time = new JTextField();
+        JComboBox time = new JComboBox<>();
         JTextField message = new JTextField();
+        String[] arr = {"5min","10", "15", "20","30min", "45min" };
+        /*for ( int i = 0; i < arr.length; i++) {
+
+        }*/
         Object[] input = {
                 "Set Timer", time,
-                "Message", message
+                "Message", message,
+
         };
 
         int option = JOptionPane.showConfirmDialog(null, input, titleBar, JOptionPane.OK_CANCEL_OPTION);
