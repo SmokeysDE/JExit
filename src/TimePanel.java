@@ -1,6 +1,4 @@
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -29,6 +27,9 @@ public class TimePanel extends JLabel implements ActionListener
     public TimePanel()
     {
         super("");
+        this.setForeground(Color.white);
+        this.setSize(200, 200);
+        this.setFont(new Font("Sans serif", Font.BOLD, 24));
     }
 
     /**

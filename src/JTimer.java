@@ -1,22 +1,36 @@
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.Timer;
-
+import javax.swing.*;
 
 public class JTimer extends JLabel implements ActionListener {
 
     private Timer _timer;
     private int remainingTimeInSeconds;
+    private String _message;
+    private int timer;
 
 
     /**
      * Default ctor
      */
-    public JTimer(){
+    public JTimer() {
+        super("", JLabel.RIGHT);
+        remainingTimeInSeconds = 0;
+        super.setForeground(Color.white);
+        super.setSize(200, 200);
+        super.setFont(new Font("Sans serif", Font.BOLD, 24));
+
+    }
+    public JTimer(String message, int time){
         super("",JLabel.RIGHT);
-        remainingTimeInSeconds = 30 * 60; // 30 minutes in seconds
+        super.setForeground(Color.white);
+        super.setSize(200, 200);
+        super.setFont(new Font("Sans serif", Font.BOLD, 24));
+        this.timer = time;
+        remainingTimeInSeconds = time * 60; // 30 minutes in seconds
+        this._message = message;
     }
 
     /**
@@ -42,6 +56,10 @@ public class JTimer extends JLabel implements ActionListener {
             _timer.stop();
             _timer = null;
         }
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
     }
 
     /**

@@ -15,8 +15,6 @@ public class MainWindow extends JFrame {
     private String[] _command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
     private GridLayout _grid = new GridLayout(2,1,0,0);
 
-
-
     public MainWindow(){
 
         /**
@@ -48,14 +46,10 @@ public class MainWindow extends JFrame {
         Panel pane2 = new Panel();
         pane2.setSize(300,200);
         pane2.setBackground(Color.darkGray);
-        TimePanel time = new TimePanel();
-        time.setForeground(Color.white);
-        time.setSize(200,200);
-        time.setFont(new Font("Sans serif", Font.BOLD, 24));
-        JTimer countdown = new JTimer();
-        countdown.setForeground(Color.white);
-        countdown.setSize(200,200);
-        countdown.setFont(new Font("Sans serif", Font.BOLD, 24));
+        TimePanel timePanel = new TimePanel();
+        timePanel.setForeground(Color.white);
+        timePanel.setSize(200,200);
+        timePanel.setFont(new Font("Sans serif", Font.BOLD, 24));
         pane2.setLayout(new GridLayout(1,2));
 
         /**
@@ -67,8 +61,9 @@ public class MainWindow extends JFrame {
         /**
          *Adding details
          */
-        pane2.add(time);
-        pane2.add(countdown);
+        pane2.add(timePanel);
+        JTimer count = new JTimer();
+        pane2.add(count);
         pane.setBackground(Color.darkGray);
         pane.createButtons();
 
@@ -133,9 +128,18 @@ public class MainWindow extends JFrame {
          */
         abort.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
-            infoBox("Shutdown abgebrochen",abort.getText());
+            infoBox("Abbruch",abort.getText());
             try{
                 rt.exec(_command[3]); // shutdown -a
+                Component[] components = pane2.getComponents();
+                for (Component component : components) {
+                    if (component instanceof JTimer) {
+                        pane2.remove(component);
+                        break; // Assuming there will be only one JTimer, exit the loop after removal.
+                    }
+                }
+                JTimer _count = new JTimer();
+                pane2.add(_count);
             } catch(IOException ex){
                 ex.printStackTrace();
             }
@@ -146,11 +150,47 @@ public class MainWindow extends JFrame {
          * Button Reminder
          *              with lambda
          */
-        reminder.addActionListener(e->{
+        reminder.addActionListener(e -> {
+            _label.setText("Reminder");
+            _label.setForeground(Color.white);
 
-                _label.setText("Reminder");
-                _label.setForeground(Color.white);
-                inputBox("Bitte eingeben ", reminder.getText());
+            JComboBox<Integer> time = new JComboBox<>();
+            JTextField message = new JTextField();
+            Integer[] arr = {5, 10, 15, 20, 30, 45};
+            time.setModel(new DefaultComboBoxModel<>(arr));
+
+            Object[] input = {
+                    "Set Timer in min", time,
+                    "Message", message,
+            };
+
+            int option = JOptionPane.showConfirmDialog(null, input, _label.getText(), JOptionPane.OK_CANCEL_OPTION);
+
+            if (option == JOptionPane.OK_OPTION) {
+                // Get the selected time in minutes from the JComboBox
+                int selectedTime = (int) time.getSelectedItem();
+
+                /**
+                 * Remove the existing countdown timer if it exists
+                 */
+                Component[] components = pane2.getComponents();
+                for (Component component : components) {
+                    if (component instanceof JTimer) {
+                        pane2.remove(component);
+                        break; // Assuming there will be only one JTimer, exit the loop after removal.
+                    }
+                }
+
+                /**
+                 *  Create and add the new countdown timer
+                  */
+                JTimer countdown = new JTimer(message.getText(), selectedTime);
+//                countdown.setForeground(Color.white);
+//                countdown.setSize(200, 200);
+//                countdown.setFont(new Font("Sans serif", Font.BOLD, 24));
+                pane2.add(countdown);
+                pane2.revalidate(); // Revalidate the container after adding/removing components
+            }
         });
 
         /**
@@ -175,6 +215,7 @@ public class MainWindow extends JFrame {
         panel.add(pane2);
         panel.add(pane3);
         add(panel);
+
         /**
          * last but not least
          */
@@ -194,21 +235,21 @@ public class MainWindow extends JFrame {
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar,
                 JOptionPane.INFORMATION_MESSAGE);
     }
-    public void inputBox(String infoMessage, String titleBar){
-        JComboBox time = new JComboBox<>();
-        JTextField message = new JTextField();
-        String[] arr = {"5min","10", "15", "20","30min", "45min" };
-        /*for ( int i = 0; i < arr.length; i++) {
-
-        }*/
-        Object[] input = {
-                "Set Timer", time,
-                "Message", message,
-
-        };
-
-        int option = JOptionPane.showConfirmDialog(null, input, titleBar, JOptionPane.OK_CANCEL_OPTION);
-        //if (option == JOptionPane.OK_OPTION) {}
-
-    }
+//    public void inputBox(String infoMessage, String titleBar){
+//        JComboBox time = new JComboBox<>();
+//        JTextField message = new JTextField();
+//        int[] arr = {5,10, 15, 20, 30, 45};
+//        for ( int i = 0; i < arr.length; i++) {
+//            time.addItem(arr[i]);
+//        }
+//        Object[] input = {
+//                "Set Timer in min", time,
+//                "Message", message,
+//
+//        };
+//
+//        int option = JOptionPane.showConfirmDialog(null, input, titleBar, JOptionPane.OK_CANCEL_OPTION);
+//        //if (option == JOptionPane.OK_OPTION) {}
+//
+//    }
 }
