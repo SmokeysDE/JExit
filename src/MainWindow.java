@@ -235,21 +235,4 @@ public class MainWindow extends JFrame {
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar,
                 JOptionPane.INFORMATION_MESSAGE);
     }
-//    public void inputBox(String infoMessage, String titleBar){
-//        JComboBox time = new JComboBox<>();
-//        JTextField message = new JTextField();
-//        int[] arr = {5,10, 15, 20, 30, 45};
-//        for ( int i = 0; i < arr.length; i++) {
-//            time.addItem(arr[i]);
-//        }
-//        Object[] input = {
-//                "Set Timer in min", time,
-//                "Message", message,
-//
-//        };
-//
-//        int option = JOptionPane.showConfirmDialog(null, input, titleBar, JOptionPane.OK_CANCEL_OPTION);
-//        //if (option == JOptionPane.OK_OPTION) {}
-//
-//    }
 }
