@@ -188,9 +188,6 @@ public class MainWindow extends JFrame {
                  *  Create and add the new countdown timer
                   */
                 JTimer countdown = new JTimer(message.getText(), selectedTime);
-//                countdown.setForeground(Color.white);
-//                countdown.setSize(200, 200);
-//                countdown.setFont(new Font("Sans serif", Font.BOLD, 24));
                 pane2.add(countdown);
                 pane2.revalidate(); // Revalidate the container after adding/removing components
             }
@@ -228,14 +225,6 @@ public class MainWindow extends JFrame {
          */
 
     }
-
-//    public int get_count() {
-//        return _count;
-//    }
-//
-//    public void set_count(int _count) {
-//        this._count = _count;
-//    }
 
     /**
      * custom infoBox for buttons
