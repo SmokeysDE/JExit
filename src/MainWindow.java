@@ -119,10 +119,47 @@ public class MainWindow extends JFrame {
          * Button Pomodoro
          */
         pomodoro.addActionListener(e -> {
-
             _label.setForeground(Color.white);
+            JComboBox<Integer> time = new JComboBox<>();
+            JComboBox<Integer> pom = new JComboBox<>();
+            Integer[] arr = {25, 50, 60};
+            Integer[] pom1 = {5, 10, 15};
+            time.setModel(new DefaultComboBoxModel<>(arr));
+            pom.setModel(new DefaultComboBoxModel<>(pom1));
 
+            Object[] input = {
+                    "Set Timer in min", time,
+                    "pomodoro", pom
+            };
 
+            int option = JOptionPane.showConfirmDialog(null, input, _label.getText(), JOptionPane.OK_CANCEL_OPTION);
+
+            if (option == JOptionPane.OK_OPTION) {
+                // Get the selected time in minutes from the JComboBox
+                int selectedTime = (int) time.getSelectedItem();
+                int selectedPom = (int) pom.getSelectedItem();
+
+                /**
+                 * Remove the existing pomodoro timer if it exists
+                 */
+                Component[] components = pane3.getComponents();
+                for (Component component : components) {
+                    if (component instanceof JPom) {
+                        pane3.remove(component);
+                        break; // Assuming there will be only one JPom instance, exit the loop after removal.
+                    }
+                }
+
+                /**
+                 * Create and add the new pomodoro timer
+                 */
+                JPom pomodoroTimer = new JPom(selectedTime, selectedPom, 15); // Assuming long break duration is 15 minutes
+                pane3.add(pomodoroTimer);
+                pane3.revalidate(); // Revalidate the container after adding/removing components
+
+                // Start the pomodoro timer
+                pomodoroTimer.startPomodoro();
+            }
         });
 
         /**
@@ -149,20 +186,55 @@ public class MainWindow extends JFrame {
             try{
                 rt.exec(_command[3]); // shutdown -a
                 Component[] components = pane2.getComponents();
+                Component[] components1 = pane3.getComponents();
                 for (Component component : components) {
                     if (component instanceof JTimer) {
                         pane2.remove(component);
                         break; // Assuming there will be only one JTimer, exit the loop after removal.
                     }
                 }
+                for (Component component : components1) {
+                    if (component instanceof JPom) {
+                        pane3.remove(component);
+                        break; // Assuming there will be only one JTimer, exit the loop after removal.
+                    }
+                }
                 JTimer _count = new JTimer();
                 pane2.add(_count);
                 pane2.revalidate();
+                JPom pom = new JPom();
+                pane3.add(pom);
+                pane3.revalidate();
             } catch(IOException ex){
                 ex.printStackTrace();
             }
 
         });
+//        abort.addActionListener(e -> {
+//            Runtime rt = Runtime.getRuntime();
+//            infoBox("Abbruch", abort.getText());
+//            try {
+//                rt.exec(_command[3]); // shutdown -a
+//                Component[] components = pane2.getComponents();
+//                Component[] components1 = pane3.getComponents();
+//                for (Component component : components) {
+//                    if (component instanceof JTimer) {
+//                        // Set the existing JTimer to "00:00"
+//                        ((JTimer) component).setText("00:00");
+//                        break; // Assuming there will be only one JTimer, exit the loop after finding it.
+//                    }
+//                }
+//                for (Component component : components1) {
+//                    if (component instanceof JPom) {
+//                        // Set the existing JPom to "00:00"
+//                        ((JPom) component).setText("00:00");
+//                        break; // Assuming there will be only one JPom, exit the loop after finding it.
+//                    }
+//                }
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        });
 
         /**
          * Button Reminder
