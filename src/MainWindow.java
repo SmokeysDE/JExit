@@ -108,7 +108,8 @@ public class MainWindow extends JFrame {
 
                     };
 
-                    int option = JOptionPane.showConfirmDialog(null, input, _label.getText(), JOptionPane.OK_CANCEL_OPTION);
+                    int option = JOptionPane.showConfirmDialog(null, input, _label.getText(),
+                            JOptionPane.OK_CANCEL_OPTION);
 
                     if (option == JOptionPane.OK_OPTION) {
                         // Get the selected time in minutes from the JComboBox
@@ -138,7 +139,8 @@ public class MainWindow extends JFrame {
                     "Pause", pom
             };
 
-            int option = JOptionPane.showConfirmDialog(null, input, _label.getText(), JOptionPane.OK_CANCEL_OPTION);
+            int option = JOptionPane.showConfirmDialog(null, input, _label.getText(),
+                    JOptionPane.OK_CANCEL_OPTION);
 
             if (option == JOptionPane.OK_OPTION) {
                 // Get the selected time in minutes from the JComboBox
@@ -159,7 +161,7 @@ public class MainWindow extends JFrame {
                 /**
                  * Create and add the new pomodoro timer
                  */
-                JPom pomodoroTimer = new JPom(selectedTime, selectedPom, 30); // Assuming long break duration is 30 minutes
+                JPom pomodoroTimer = new JPom(selectedTime, selectedPom, 30); // long break 30min
                 pane3.add(pomodoroTimer);
                 pane3.revalidate(); // Revalidate the container after adding/removing components
 
@@ -235,7 +237,8 @@ public class MainWindow extends JFrame {
                     "Message", message,
             };
 
-            int option = JOptionPane.showConfirmDialog(null, input, _label.getText(), JOptionPane.OK_CANCEL_OPTION);
+            int option = JOptionPane.showConfirmDialog(null, input, _label.getText(),
+                    JOptionPane.OK_CANCEL_OPTION);
 
             if (option == JOptionPane.OK_OPTION) {
                 // Get the selected time in minutes from the JComboBox

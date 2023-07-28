@@ -76,8 +76,8 @@ public class JPom extends JLabel implements ActionListener {
                     JOptionPane.INFORMATION_MESSAGE);
             completedPomodoros++;
             if (completedPomodoros % 4 == 0 && completedPomodoros > 0) {
-                JOptionPane.showMessageDialog(null, "4 Pomodoros", "Meldung",
-                        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Du hast 4 Pomodoros geschafft! Lange Pause",
+                        "Meldung", JOptionPane.INFORMATION_MESSAGE);
                 remainingTimeInSeconds = longBreakDuration * 60;
             } else {
                 remainingTimeInSeconds = shortBreakDuration * 60;
