@@ -59,6 +59,12 @@ public class MainWindow extends JFrame {
         Panel pane3 = new Panel();
         pane3.setSize(300,200);
         pane3.setBackground(Color.darkGray);
+        pane3.setLayout(new GridLayout(1,2));
+        JLabel label = new JLabel();
+        label.setText("Pomodoro");
+        label.setFont(new Font("Sans serif",Font.PLAIN,16));
+        label.setForeground(Color.white);
+        pane3.add(label);
 
         /**
          *Adding details
@@ -122,14 +128,14 @@ public class MainWindow extends JFrame {
             _label.setForeground(Color.white);
             JComboBox<Integer> time = new JComboBox<>();
             JComboBox<Integer> pom = new JComboBox<>();
-            Integer[] arr = {25, 50, 60};
-            Integer[] pom1 = {5, 10, 15};
+            Integer[] arr = {1,25, 50, 60};
+            Integer[] pom1 = {1,5, 10, 15};
             time.setModel(new DefaultComboBoxModel<>(arr));
             pom.setModel(new DefaultComboBoxModel<>(pom1));
 
             Object[] input = {
-                    "Set Timer in min", time,
-                    "pomodoro", pom
+                    "Pomodoro", time,
+                    "Pause", pom
             };
 
             int option = JOptionPane.showConfirmDialog(null, input, _label.getText(), JOptionPane.OK_CANCEL_OPTION);
