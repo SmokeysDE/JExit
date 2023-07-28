@@ -25,7 +25,7 @@ public class JPom extends JLabel implements ActionListener {
     }
 
     public JPom(int pomodoroDuration, int shortBreakDuration, int longBreakDuration) {
-        super("", JLabel.RIGHT);
+        super("00:00", JLabel.RIGHT);
         super.setForeground(Color.white);
         super.setSize(200, 200);
         super.setFont(new Font("Sans serif", Font.BOLD, 24));

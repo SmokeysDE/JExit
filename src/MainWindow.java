@@ -210,31 +210,6 @@ public class MainWindow extends JFrame {
             }
 
         });
-//        abort.addActionListener(e -> {
-//            Runtime rt = Runtime.getRuntime();
-//            infoBox("Abbruch", abort.getText());
-//            try {
-//                rt.exec(_command[3]); // shutdown -a
-//                Component[] components = pane2.getComponents();
-//                Component[] components1 = pane3.getComponents();
-//                for (Component component : components) {
-//                    if (component instanceof JTimer) {
-//                        // Set the existing JTimer to "00:00"
-//                        ((JTimer) component).setText("00:00");
-//                        break; // Assuming there will be only one JTimer, exit the loop after finding it.
-//                    }
-//                }
-//                for (Component component : components1) {
-//                    if (component instanceof JPom) {
-//                        // Set the existing JPom to "00:00"
-//                        ((JPom) component).setText("00:00");
-//                        break; // Assuming there will be only one JPom, exit the loop after finding it.
-//                    }
-//                }
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        });
 
         /**
          * Button Reminder
