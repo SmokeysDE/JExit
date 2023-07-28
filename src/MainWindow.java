@@ -12,7 +12,7 @@ public class MainWindow extends JFrame {
      *                                   [0]                  [1]                  [2]              [3]
      */
 
-    private String[] _command = {"shutdown -s -t 1800","ipconfig -release", "ipconfig -renew", "shutdown -a"};
+    private String[] _command = {"shutdown -s -t ","ipconfig -release", "ipconfig -renew", "shutdown -a"};
     private GridLayout _grid = new GridLayout(2,1,0,0);
     private int _count1 = 0;
 
@@ -92,13 +92,28 @@ public class MainWindow extends JFrame {
 
         shutdown.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
+                    JComboBox<Integer> time = new JComboBox<>();
+
+                    Integer[] arr = {1, 5, 10, 15, 20, 30, 45};
+                    time.setModel(new DefaultComboBoxModel<>(arr));
+
+                    Object[] input = {
+                            "Set Timer in min", time,
+
+                    };
+
+                    int option = JOptionPane.showConfirmDialog(null, input, _label.getText(), JOptionPane.OK_CANCEL_OPTION);
+
+                    if (option == JOptionPane.OK_OPTION) {
+                        // Get the selected time in minutes from the JComboBox
+                        int selectedTime = (int) time.getSelectedItem();
             try {
-                rt.exec(_command[0]); // shutdown -s -t 1800
-                infoBox("Shutdown in 30 min", shutdown.getText());
+                rt.exec(_command[0]+selectedTime*60); // shutdown -s -t 1800
+                infoBox("Shutdown in "+selectedTime+" min", shutdown.getText());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        });
+        }});
 
         /**
          * Button Pomodoro
