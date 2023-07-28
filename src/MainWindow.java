@@ -159,7 +159,7 @@ public class MainWindow extends JFrame {
                 /**
                  * Create and add the new pomodoro timer
                  */
-                JPom pomodoroTimer = new JPom(selectedTime, selectedPom, 15); // Assuming long break duration is 15 minutes
+                JPom pomodoroTimer = new JPom(selectedTime, selectedPom, 30); // Assuming long break duration is 30 minutes
                 pane3.add(pomodoroTimer);
                 pane3.revalidate(); // Revalidate the container after adding/removing components
 
@@ -202,7 +202,7 @@ public class MainWindow extends JFrame {
                 for (Component component : components1) {
                     if (component instanceof JPom) {
                         pane3.remove(component);
-                        break; // Assuming there will be only one JTimer, exit the loop after removal.
+                        break; // Only one active JPom
                     }
                 }
                 JTimer _count = new JTimer();
