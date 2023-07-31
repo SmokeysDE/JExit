@@ -6,20 +6,18 @@ import java.io.IOException;
 
 public class MainWindow extends JFrame {
 
-    private JLabel _label = new JLabel();
+    private final JLabel _label = new JLabel();
 
     /**
      *                                   [0]                  [1]                  [2]              [3]
      */
 
-    private String[] _command = {"shutdown -s -t ","ipconfig -release", "ipconfig -renew", "shutdown -a"};
-    private GridLayout _grid = new GridLayout(2,1,0,0);
-    private int _count1 = 0;
+    private final String[] _command = {"shutdown -s -t ","ipconfig -release", "ipconfig -renew", "shutdown -a"};
 
     public MainWindow(){
 
-        /**
-         * Create main Window
+        /*
+          Create main Window
          */
         setResizable(false);
         setTitle("JExit");
@@ -38,6 +36,7 @@ public class MainWindow extends JFrame {
          * Button Panel
          */
         Panel pane = new Panel();
+        GridLayout _grid = new GridLayout(2, 1, 0, 0);
         pane.setLayout(_grid);
         pane.setSize(300,200);
 

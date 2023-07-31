@@ -71,7 +71,7 @@ public class JPom extends JLabel implements ActionListener {
      * Start the Pomodoro timer.
      */
     public void startPomodoro() {
-        if (isBreak == true) {
+        if (isBreak) {
             JOptionPane.showMessageDialog(null, "Pause", "Meldung",
                     JOptionPane.INFORMATION_MESSAGE);
             completedPomodoros++;

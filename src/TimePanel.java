@@ -14,9 +14,9 @@ public class TimePanel extends JLabel implements ActionListener
     private Timer _timer;
 
     //Used to format the displayed date.
-    private DateFormat _fmt = DateFormat.getTimeInstance(DateFormat.MEDIUM);
+    private final DateFormat _fmt = DateFormat.getTimeInstance(DateFormat.MEDIUM);
     private Dimension _prefSize;
-    private Calendar _calendar = Calendar.getInstance();
+    private final Calendar _calendar = Calendar.getInstance();
 
 
     /**
