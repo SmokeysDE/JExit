@@ -8,7 +8,7 @@ public class MainWindow extends JFrame {
 
     private final JLabel _label = new JLabel();
 
-    /**
+    /*
      *                                   [0]                  [1]                  [2]              [3]
      */
 
