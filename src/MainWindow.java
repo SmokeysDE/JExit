@@ -25,23 +25,23 @@ public class MainWindow extends JFrame {
         setSize(300, 500);
         setLocationRelativeTo(null);
 
-        /**
-         * Main panel
+        /*
+          Main panel
          */
         Panel panel = new Panel();
         panel.setSize(300,600);
         panel.setLayout(new GridLayout(3,1));
 
-        /**
-         * Button Panel
+        /*
+          Button Panel
          */
         Panel pane = new Panel();
         GridLayout _grid = new GridLayout(2, 1, 0, 0);
         pane.setLayout(_grid);
         pane.setSize(300,200);
 
-        /**
-         * Mid Panel
+        /*
+          Mid Panel
          */
         Panel pane2 = new Panel();
         pane2.setSize(300,200);
@@ -52,8 +52,8 @@ public class MainWindow extends JFrame {
         timePanel.setFont(new Font("Sans serif", Font.BOLD, 24));
         pane2.setLayout(new GridLayout(1,2));
 
-        /**
-         * Low Panel
+        /*
+          Low Panel
          */
         Panel pane3 = new Panel();
         pane3.setSize(300,200);
@@ -65,8 +65,8 @@ public class MainWindow extends JFrame {
         label.setForeground(Color.white);
         pane3.add(label);
 
-        /**
-         *Adding details
+        /*
+         Adding details
          */
         pane2.add(timePanel);
         JTimer count = new JTimer();
@@ -74,9 +74,7 @@ public class MainWindow extends JFrame {
         pane.setBackground(Color.darkGray);
         pane.createButtons();
 
-        /**
-         * Button Names and Text
-         */
+        /* Button Names and Text */
         Buttons shutdown = pane.getButton(0);
         Buttons pomodoro = pane.getButton(1);
         Buttons iprelease = pane.getButton(2);
@@ -90,9 +88,9 @@ public class MainWindow extends JFrame {
         reminder.setText("Reminder");
         reconnect.setText("IP renew");
 
-        /**
-         * Button Shutdown
-         *          lambda for button action
+        /*
+          Button Shutdown
+                   lambda for button action
          */
 
         shutdown.addActionListener(e -> {
@@ -121,8 +119,8 @@ public class MainWindow extends JFrame {
             }
         }});
 
-        /**
-         * Button Pomodoro
+        /*
+          Button Pomodoro
          */
         pomodoro.addActionListener(e -> {
             _label.setForeground(Color.white);
@@ -146,8 +144,8 @@ public class MainWindow extends JFrame {
                 int selectedTime = (int) time.getSelectedItem();
                 int selectedPom = (int) pom.getSelectedItem();
 
-                /**
-                 * Remove the existing pomodoro timer if it exists
+                /*
+                  Remove the existing pomodoro timer if it exists
                  */
                 Component[] components = pane3.getComponents();
                 for (Component component : components) {
@@ -157,8 +155,8 @@ public class MainWindow extends JFrame {
                     }
                 }
 
-                /**
-                 * Create and add the new pomodoro timer
+                /*
+                  Create and add the new pomodoro timer
                  */
                 JPom pomodoroTimer = new JPom(selectedTime, selectedPom, 30); // long break 30min
                 pane3.add(pomodoroTimer);
@@ -169,9 +167,9 @@ public class MainWindow extends JFrame {
             }
         });
 
-        /**
-         * Button IP release
-         *              with lambda
+        /*
+          Button IP release
+                       with lambda
          */
         iprelease.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
@@ -183,9 +181,9 @@ public class MainWindow extends JFrame {
             }
         });
 
-        /**
-         * Button Abort
-         *              with lambda
+        /*
+          Button Abort
+                       with lambda
          */
         abort.addActionListener(e -> {
             Runtime rt = Runtime.getRuntime();
@@ -218,9 +216,9 @@ public class MainWindow extends JFrame {
 
         });
 
-        /**
-         * Button Reminder
-         *              with lambda
+        /*
+          Button Reminder
+                       with lambda
          */
         reminder.addActionListener(e -> {
             _label.setText("Reminder");
@@ -243,8 +241,8 @@ public class MainWindow extends JFrame {
                 // Get the selected time in minutes from the JComboBox
                 int selectedTime = (int) time.getSelectedItem();
 
-                /**
-                 * Remove the existing countdown timer if it exists
+                /*
+                  Remove the existing countdown timer if it exists
                  */
                 Component[] components = pane2.getComponents();
                 for (Component component : components) {
@@ -254,8 +252,8 @@ public class MainWindow extends JFrame {
                     }
                 }
 
-                /**
-                 *  Create and add the new countdown timer
+                /*
+                   Create and add the new countdown timer
                   */
                 JTimer countdown = new JTimer(message.getText(), selectedTime);
                 pane2.add(countdown);
@@ -263,9 +261,9 @@ public class MainWindow extends JFrame {
             }
         });
 
-        /**
-         * Button IP renew
-         *              with lambda
+        /*
+          Button IP renew
+                       with lambda
          */
         reconnect.addActionListener(e ->  {
 
@@ -278,28 +276,26 @@ public class MainWindow extends JFrame {
                 }
         });
 
-        /**
-         * Adding all together
+        /*
+          Adding all together
          */
         panel.add(pane);
         panel.add(pane2);
         panel.add(pane3);
         add(panel);
 
-        /**
-         * last but not least
+        /*
+          last but not least
          */
         setVisible(true);
-        /**
-         * It's a kind of magic
+        /*
+          It's a kind of magic
          */
 
     }
 
     /**
      * custom infoBox for buttons
-     * @param infoMessage
-     * @param titleBar
      */
     public void infoBox(String infoMessage, String titleBar){
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar,
